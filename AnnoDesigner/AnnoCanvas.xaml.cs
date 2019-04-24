@@ -34,6 +34,21 @@ namespace AnnoDesigner
         public readonly BuildingPresets BuildingPresets;
 
         /// <summary>
+        /// Backing field for the Grid property
+        /// </summary>
+        private AnnoObject[][] _grid;
+        /// <summary>
+        /// A grid that holds the current state of the canvas.
+        /// Using a 2D array rather than a list so we can address cells directly.
+        /// Note: We should hook the draw calls into this in future, that way we can ensure the states match.
+        /// Further Note: Using the draw calls from this may allow for some kind of multithreaded/block-based rendering  - potential extra performance if needed.
+        /// </summary>
+        private AnnoObject[][] Grid
+        {
+            get
+        }
+
+        /// <summary>
         /// Backing field of the GridSize property.
         /// </summary>
         private int _gridStep = Constants.GridStepDefault;
@@ -1025,6 +1040,11 @@ namespace AnnoDesigner
                 l[i].Position.X = xPrime;
                 l[i].Position.Y = yPrime;
             }
+        }
+
+        private void EnsureCapacity()
+        {
+
         }
 
         #endregion
